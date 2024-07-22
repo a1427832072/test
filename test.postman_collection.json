@@ -45,7 +45,13 @@
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "https://portal.test.zhongteng.tech/api/oauth-server/login/token?username=gzsxgwgyxx0001&password=bhkJkSLpy+cAPGaiOEIb2KQRtzv45cpkM6i2JnV4b1iKpAxSKHD/98R1bAGL/UC/h7fdo6b9QL7XRjvqaApiUfKpcc2zobnbZtpoOT9cYKSgpiWfoOZXWzrBWM73RBLS6k7kY1T4kCt8ilOnM9pwMRoIAT7m1V6aAQ25BtSmwO8=&encryption=true",
 					"protocol": "https",
