@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "36b7bd32-3704-4aee-a1c1-fb40846e57a0",
+		"name": "demo_to_jenkins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7115976"
+	},
+	"item": [
+		{
+			"name": "test-login校端",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//获取相应内容\r",
+							"var rspBody = pm.response.text();\r",
+							"//打印用于调试\r",
+							"console.log(rspBody);\r",
+							"//把响应内容转化为字符串\r",
+							"var jsBody = JSON.parse(rspBody);\r",
+							"//设置全局变量\r",
+							"pm.globals.set(\"token\", jsBody.data.access_token);\r",
+							"\r",
+							"\r",
+							"//断言\r",
+							"pm.test(\"登录检测\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"登录认证成功\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"状态码\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"code码\", function () {\r",
+							"    // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsBody.code).to.eql(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://portal.demo.ztshuzi.cn/api/oauth-server/login/token?username=gzsxgwgyxx0001&password=V13nShqH5WWIXtSkBLdpZjNUXjgfa80JGPvguizT1fEkNcyJd9+hB4iwfemNchmBASqWG3ywwlh2PjrKx/UgJHBkpJ5AEiLHCeL+JGxGO61LE92HberMBo2VSlbxlcP30xStwTjTJ03k9HIEY4ngpcNkj6L+yz1ghsxnH1hiAd0=&encryption=true",
+					"protocol": "https",
+					"host": [
+						"portal",
+						"demo",
+						"ztshuzi",
+						"cn"
+					],
+					"path": [
+						"api",
+						"oauth-server",
+						"login",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "gzsxgwgyxx0001"
+						},
+						{
+							"key": "password",
+							"value": "V13nShqH5WWIXtSkBLdpZjNUXjgfa80JGPvguizT1fEkNcyJd9+hB4iwfemNchmBASqWG3ywwlh2PjrKx/UgJHBkpJ5AEiLHCeL+JGxGO61LE92HberMBo2VSlbxlcP30xStwTjTJ03k9HIEY4ngpcNkj6L+yz1ghsxnH1hiAd0="
+						},
+						{
+							"key": "encryption",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
